@@ -11,8 +11,25 @@ func main() {
 
 }
 
-func Solve() {
-
+func Solve(a [][]int) [][]int {
+	ret := make([][]int, len(a))
+	for i := range ret {
+		ret[i] = make([]int, len(a[i]))
+	}
+	hsum, wsum := make([]int, len(a[0])), make([]int, len(a))
+	for i, ai := range a {
+		for j, aij := range ai {
+			hsum[j] += aij
+			wsum[i] += aij
+		}
+	}
+	// log.Println("Solve: hsum[", hsum, "], wsum[", wsum, "]")
+	for i, ai := range a {
+		for j, aij := range ai {
+			ret[i][j] = hsum[j] + wsum[i] - aij
+		}
+	}
+	return ret
 }
 
 func ReadInputFromFile(filename string) [][]int {

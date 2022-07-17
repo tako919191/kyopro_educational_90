@@ -15,6 +15,18 @@ var filenames = []string{
 	"sample_02.txt",
 	"sample_03.txt",
 	"sample_04.txt",
+	"random01.txt",
+	"random02.txt",
+	"random03.txt",
+	"random04.txt",
+	"random05.txt",
+	"random06.txt",
+	"random07.txt",
+	"random08.txt",
+	"hand01.txt",
+	"hand02.txt",
+	"hand03.txt",
+	"hand04.txt",
 }
 
 func TestReadInputFromFile(t *testing.T) {
@@ -34,12 +46,12 @@ func TestReadOutputFromFile(t *testing.T) {
 }
 
 func TestSolve(t *testing.T) {
-	// for idx, f := range filenames {
-	// 	a := ReadInputFromFile(f[idx])
-	// 	got := Solve(a)
-	// 	want := ReadOutputFromFile(f[idx])
-	// 	if got != want {
-	// 		t.Errorf("Case(%d) got %q want %q", idx, got, want)
-	// 	}
-	// }
+	for idx, f := range filenames {
+		a := ReadInputFromFile(InputPath + f)
+		got := Solve(a)
+		want := ReadOutputFromFile(OutputPath + f)
+		if !(reflect.DeepEqual(got, want)) {
+			t.Errorf("Case(TestSolve:%d:%q) got %v want %v", idx, f, got, want)
+		}
+	}
 }
